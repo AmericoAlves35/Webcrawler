@@ -25,4 +25,4 @@ Desenvolver um webcrawler capaz de:
 - 2.1.5. Implementar um webcrawler multithread, limitando a 3 execuções simultâneas.
 
 ## Demonstração
-![Demonstração](Demonstracao.gif)
+![Demonstração](Demonstracao.mp4)
