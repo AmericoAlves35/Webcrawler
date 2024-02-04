@@ -1,0 +1,22 @@
+17:01:57 [INFO] 
+17:01:57 [INFO] Iniciando execução...
+17:01:59 [INFO] Código de status da resposta HTTP: 200 - OK
+17:01:59 [INFO] O site está disponível para consulta. Iniciando o processo de extração...
+17:02:12 [INFO] Lista de proxies criados em arquivo .JSON salvo em: C:\Users\Americo\Desktop\AtividadeElaw\extracaoJSON\all_proxies_1_2.json
+17:02:12 [INFO] Processo de extração concluído com sucesso.
+17:02:13 [INFO] Conexão com banco de dados bem-sucedida!
+17:02:13 [INFO] Dados salvos no banco de dados!
+17:02:13 [INFO] Pasta com arquivos print.html criada: C:\Users\Americo\Desktop\AtividadeElaw\htmlPages\all_proxies_1_2
+17:02:21 [INFO] ...Fim da execução
+17:02:21 [INFO] 
+17:03:44 [INFO] 
+17:03:44 [INFO] Iniciando execução...
+17:03:47 [INFO] Código de status da resposta HTTP: 200 - OK
+17:03:47 [INFO] O site está disponível para consulta. Iniciando o processo de extração...
+17:04:04 [INFO] Lista de proxies criados em arquivo .JSON salvo em: C:\Users\Americo\Desktop\AtividadeElaw\extracaoJSON\all_proxies_1_3.json
+17:04:04 [INFO] Processo de extração concluído com sucesso.
+17:04:04 [INFO] Conexão com banco de dados bem-sucedida!
+17:04:04 [INFO] Dados salvos no banco de dados!
+17:04:04 [INFO] Pasta com arquivos print.html criada: C:\Users\Americo\Desktop\AtividadeElaw\htmlPages\all_proxies_1_3
+17:04:08 [INFO] ...Fim da execução
+17:04:08 [INFO] 
