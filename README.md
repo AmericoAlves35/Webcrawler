@@ -23,3 +23,6 @@ Desenvolver um webcrawler capaz de:
 - 2.1.3. Salvar em banco de dados a data de início da execução, data de término da execução, quantidade de páginas, quantidade de linhas extraídas em todas as páginas e o arquivo JSON gerado.
 - 2.1.4. Capturar um print (arquivo .html) de cada página acessada.
 - 2.1.5. Implementar um webcrawler multithread, limitando a 3 execuções simultâneas.
+
+## Demonstração
+![Demonstração](Demonstracao.gif)
