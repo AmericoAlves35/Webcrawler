@@ -6,7 +6,7 @@ namespace AvaliaçãoWebcrawlerELAW
     class ConnectionMySql
     {
         //private const string connectionString = "Server=servidor;Database=databaseName;User ID=yourId;Password=pass;";
-        private const string connectionString = "Server=localhost;Database=dadoswebcrawler;User ID=root;Password=852040am;";
+      
         private static Logger logger;
         public void MyConnection(int totalPages, int totalRows, string jsonFilePath, DateTime startDate, DateTime endDate)
         {
