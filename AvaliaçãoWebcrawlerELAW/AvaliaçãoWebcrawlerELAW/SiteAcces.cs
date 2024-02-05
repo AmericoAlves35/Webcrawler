@@ -11,16 +11,23 @@ using System.Threading.Tasks;
 class SiteAccses
 {
 
-    // //private const string basePath = @"C:\xxx\xxx\xxx\extracaoJSON"; 
-   
-    ////private const string htmlPagesPath = @"C:\Users\Americo\Desktop\AtividadeElaw\htmlPages"; visorio
+    // //private const string basePath = @"C:\xxx\xxx\xxx\extracaoJSON"; //local para salvar o arquivo JSON
+    // private const string basePath = @"C:\Users\Americo\Desktop\AtividadeElaw\extracaoJSON";
+    ////private const string htmlPagesPath = @"C:\Users\Americo\Desktop\AtividadeElaw\htmlPages"; local para salvar o arquivo de print html provisorio
+    // private const string htmlPagesPath = @"C:\Users\Americo\Desktop\AtividadeElaw\htmlPages";
+    // private const string baseUrl = "https://proxyservers.pro/proxy/list/order/updated/order_dir/desc";
+    // static string fileName2 = "";
+
+    // private SemaphoreSlim semaphore = new SemaphoreSlim(3); // Limite de 3 execuções simultâneas
+    // private List<ProxyInformation> allProxies = new List<ProxyInformation>();
+
+    private const string basePath = @"C:\Users\Americo\Desktop\AtividadeElaw\extracaoJSON";
+    private const string htmlPagesPath = @"C:\Users\Americo\Desktop\AtividadeElaw\htmlPages";
   
-    private const string basePath = @"C:\Users\Americo\Desktop\AtividadeElaw\extracaoJSON";//local para salvar o arquivo JSON
-    private const string htmlPagesPath = @"C:\Users\Americo\Desktop\AtividadeElaw\htmlPages";//local para salvar o arquivo de print.html  
     private const string baseUrl = "https://proxyservers.pro/proxy/list/order/updated/order_dir/desc";
     private static string fileName2 = "";
 
-    private SemaphoreSlim semaphore = new SemaphoreSlim(3);// Limite de 3 execuções simultâneas
+    private SemaphoreSlim semaphore = new SemaphoreSlim(3);
     private List<ProxyInformation> allProxies = new List<ProxyInformation>();
     private static Logger logger;
        
@@ -80,7 +87,7 @@ class SiteAccses
             Console.ForegroundColor = ConsoleColor.Red;
             string message3= "O site não está disponível para consulta. Verifique a conexão ou a URL do site.";
             Console.WriteLine(message3);
-            Console.ResetColor(); //restaura a cor padrão do console
+            Console.ResetColor(); // Isso restaura a cor padrão do console
             logger.LogWarning(message3);
             
             
@@ -99,7 +106,7 @@ class SiteAccses
                 Console.ForegroundColor = ConsoleColor.Green;
                 string message4=$"Código de status da resposta HTTP: {(int)response.StatusCode} - {response.StatusCode}";
                 Console.WriteLine(message4);
-                Console.ResetColor(); 
+                Console.ResetColor(); // Isso restaura a cor padrão do console
                 logger.LogInformation(message4);
                 
                 return response.IsSuccessStatusCode;
@@ -220,13 +227,14 @@ class SiteAccses
         }
     }
 
+
     private List<ProxyInformation> ExtractProxyInformation(string html)
     {
         var proxyList = new List<ProxyInformation>();
         var document = new HtmlDocument();
         document.LoadHtml(html);
 
-        //é necessario modificar os seletores CSS conforme site específico.
+        // Ajuste o seletor para capturar as linhas da tabela dentro da div com a classe 'table-responsive'
         var rows = document.DocumentNode.SelectNodes("//div[@class='table-responsive']/table/tbody/tr");
 
         if (rows != null)
@@ -234,12 +242,15 @@ class SiteAccses
             foreach (var row in rows)
             {
                 var columns = row.SelectNodes("td");
-                if (columns != null && columns.Count >= 4)
+                if (columns != null && columns.Count >= 7)
                 {
-                    var ipAddress = columns[0].InnerText.Trim();
-                    var port = columns[1].InnerText.Trim();
-                    var country = columns[2].InnerText.Trim();
-                    var protocol = columns[3].InnerText.Trim();
+                    var ipAddress = columns[1].InnerText.Trim(); // Segunda coluna contém o IP Address
+                    //var port = columns[2].InnerText.Trim(); // Terceira coluna contém o Port
+                    var portNode = columns[2].SelectSingleNode("span[@class='port']");
+                    var port = portNode?.InnerText.Trim();//Terceira coluna contém o Port
+
+                    var country = columns[3].InnerText.Trim(); // Quarta coluna contém o Country
+                    var protocol = columns[6].InnerText.Trim(); // Sétima coluna contém o Protocol
 
                     var proxyInfo = new ProxyInformation
                     {
@@ -256,6 +267,7 @@ class SiteAccses
 
         return proxyList;
     }
+
 
     private void SaveToJsonFile(int fileSequence)
     {
